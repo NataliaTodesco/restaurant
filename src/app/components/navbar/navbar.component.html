@@ -1,0 +1,22 @@
+<div class="p-4 d-flex justify-content-between">
+    <div>
+        <img src="https://spoonacular.com/application/frontend/images/logo-simple-framed-green-gradient.svg" alt="">
+        <span class="titulo">A la Carta</span>
+    </div>
+    <h6 *ngIf="document.location.pathname !== '/login'">
+        Precio:
+        <span class="bg-success text-light py-1 px-2 rounded m-3">
+            ${{acuPrecio}}
+        </span>
+        Tiempo de preparación:
+        <span class="bg-success text-light py-1 px-2 rounded m-3">
+            {{promTiempoPreparacion}}
+        </span>
+        Healt Score:
+        <span class="bg-success text-light py-1 px-2 rounded m-3">
+            {{promHealtScore}}
+        </span>
+    </h6>
+    <button *ngIf="document.location.pathname !== '/login'" class="btn btn-lg text-danger px-4" (click)="LogOut()"
+        type="button"><i class="bi bi-box-arrow-left mr-2"></i> Logout</button>
+</div>

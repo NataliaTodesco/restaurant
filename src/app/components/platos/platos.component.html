@@ -1,11 +1,11 @@
+<app-navbar></app-navbar>
 <div class="container-fluid px-5">
     <div class="row">
-        <form></form>
-    </div>
-    <div class="row">
-        <div class="col-md-3 p-3"  *ngFor="let plato of platos" >
-            <app-plato [plato]='plato'></app-plato>
+        <div class="col-md-6">
+            <app-buscador></app-buscador>
+        </div>
+        <div class="col-md-6 border-left">
+            <app-menu></app-menu>
         </div>
     </div>
-
 </div>
