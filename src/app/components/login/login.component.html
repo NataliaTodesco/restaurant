@@ -1,0 +1,56 @@
+<div class="container px-5 pt-2">
+    <div class="card my-5 shadow border-0">
+        <div class="row no-gutters">
+            <div class="col-md-5">
+                <img class="img-fluid" src="https://cdn.pixabay.com/photo/2020/01/29/04/48/food-4801581_960_720.jpg"
+                    alt="...">
+            </div>
+            <div class="col-md-7">
+                <div class="card-body px-5 pt-5">
+                    <div *ngIf="!habilitar" class="d-flex justify-content-end">
+                        <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+                      </div>
+                    <h1 class="card-title mb-4">Login</h1>
+
+                    <form [formGroup]="form" (ngSubmit)="Login()">
+                        <div class="form-group mb-3">
+                            <label for="email">Email address</label>
+                            <input formControlName="email" type="email" class="form-control mt-3" id="email"
+                                placeholder="Email...">
+                            <small id="emailHelp" *ngIf="form.controls.email.status === 'INVALID'"
+                                class="form-text text-muted">Complete este campo</small>
+                            <small id="emailHelp" *ngIf="form.controls.email.status === 'VALID'"
+                                class="form-text text-success">Listo</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Password</label>
+                            <input formControlName="password" type="password" class="form-control mt-3"
+                                placeholder="Password...">
+                            <small id="emailHelp" *ngIf="form.controls.password.status === 'INVALID'"
+                                class="form-text text-muted">Complete este campo</small>
+                            <small id="emailHelp" *ngIf="form.controls.password.status === 'VALID'"
+                                class="form-text text-success">Listo</small>
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-primary px-5 mt-4"
+                            [disabled]="form.invalid && habilitar">Login</button>
+                    </form>
+
+                    <p class="text-card text-center mt-5">
+                        <small class="text-muted">
+                            Imagen de
+                            <a target="_blank"
+                                href="https://pixabay.com/es/users/mymieu-14949613/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4801581">
+                                My Luu
+                            </a> en
+                            <a target="_blank"
+                                href="https://pixabay.com/es//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4801581">
+                                Pixabay
+                            </a>
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

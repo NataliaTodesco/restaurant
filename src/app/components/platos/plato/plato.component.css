@@ -1,0 +1,12 @@
+img {
+  max-height: 200px;
+  width: fit-content;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button {
+  margin-right: 5%;
+  padding: 2% 10%;
+}
