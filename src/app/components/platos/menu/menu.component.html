@@ -1,9 +1,13 @@
-<h2>Menú</h2> 
-<div *ngIf="menu.length === 0">
-    <div class="alert alert-dark mt-3" role="alert">
-        No se encontró ningún elemento en su menú
+<div class="container-fluid">
+    <h2>Menú</h2>
+    <div *ngIf="menu.length === 0">
+        <div class="alert alert-dark mt-3" role="alert">
+            No se encontró ningún elemento en su menú
+        </div>
     </div>
-</div>
-<div class="col-md-3 p-3" *ngFor="let plato of menu">
-    <app-plato [plato]='plato'></app-plato>
+    <div class="row">
+        <div class="col-md-3 p-3" *ngFor="let plato of menu">
+            <app-plato [plato]='plato'></app-plato>
+        </div>
+    </div>
 </div>

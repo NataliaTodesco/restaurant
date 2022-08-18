@@ -4,45 +4,45 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class MenuService {
-  private _acuPrecio: Number = 0;
-  private _promTiempoPreparacion: Number = 0;
-  private _promHealtScore: Number = 0;
+  private _acuPrecio: number = 0;
+  private _promTiempoPreparacion: number = 0;
+  private _promHealtScore: number = 0;
   private _menu: Array<Object> = [];
-  private _noVegano: Number = 0;
-  private _vegano: Number = 0;
+  private _noVegano: number = 0;
+  private _vegano: number = 0;
 
-  public get noVegano(): Number {
+  public get noVegano(): number {
     return this._noVegano;
   }
-  public set noVegano(v: Number) {
+  public setNoVegano(v: number) {
     this._noVegano = v;
   }
 
-  public get vegano(): Number {
+  public get vegano(): number {
     return this._vegano;
   }
-  public setVegano(v: Number) {
+  public setVegano(v: number) {
     this._vegano = v;
   }
 
-  public get acuPrecio(): Number {
+  public get acuPrecio(): number {
     return this._acuPrecio;
   }
-  public setAcuPrecio(v: Number) {
+  public setAcuPrecio(v: number) {
     this._acuPrecio = v;
   }
 
-  public get promTiempoPreparacion(): Number {
+  public get promTiempoPreparacion(): number {
     return this._promTiempoPreparacion;
   }
-  public setPromTiempoPreparacion(v: Number) {
+  public setPromTiempoPreparacion(v: number) {
     this._promTiempoPreparacion = v;
   }
 
-  public get promHealtScore(): Number {
+  public get promHealtScore(): number {
     return this._promHealtScore;
   }
-  public setPromHealtScore(v: Number) {
+  public setPromHealtScore(v: number) {
     this._promHealtScore = v;
   }
 

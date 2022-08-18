@@ -1,18 +1,26 @@
-<div class="row px-5">
-    <form>
-        <div class="input-group shadow rounded">
-            <div class="input-group-prepend">
-                <span class="input-group-text bg-light border-0" id="addon-wrapping"><i
-                        class="bi bi-search"></i></span>
-            </div>
-            <input id="buscador" type="text" autocomplete="off"
-                class="form-control" placeholder="Buscar un plato..." aria-describedby="search">
+<div style="min-width: 75vw; min-height: 75vh;">
+    <button class="btn btn-outline-secondary px-3 mb-3" mat-button mat-dialog-close
+        (click)="dialogRef.close()">X</button>
+    <h2 mat-dialog-title>
+        <div class="row px-5">
+            <form>
+                <div class="input-group shadow rounded">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-light border-0" id="addon-wrapping"><i
+                                class="bi bi-search"></i></span>
+                    </div>
+                    <input id="buscador" type="text" autocomplete="off" class="form-control"
+                        placeholder="Buscar un plato..." aria-describedby="search">
+                </div>
+            </form>
         </div>
-    </form>
-</div>
-<div class="row mt-4" *ngIf="resultados.length !== 0">
-    <h2>Resultados</h2>
-    <div class="col-md-6 p-3" *ngFor="let plato of resultados">
-        <app-plato [plato]='plato'></app-plato>
-    </div>
+    </h2>
+    <mat-dialog-content>
+        <div class="row mt-4" *ngIf="resultados.length !== 0">
+            <h2>Resultados</h2>
+            <div class="col-md-4 p-3" *ngFor="let plato of resultados">
+                <app-plato [plato]='plato'></app-plato>
+            </div>
+        </div>
+    </mat-dialog-content>
 </div>

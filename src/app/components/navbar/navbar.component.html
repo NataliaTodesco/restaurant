@@ -1,9 +1,9 @@
 <div class="p-4 d-flex justify-content-between">
-    <div>
+    <div [routerLink]="['/']" style="cursor: pointer;">
         <img src="https://spoonacular.com/application/frontend/images/logo-simple-framed-green-gradient.svg" alt="">
         <span class="titulo">A la Carta</span>
     </div>
-    <h6 *ngIf="document.location.pathname !== '/login'">
+    <h6 class="mt-2" *ngIf="document.location.pathname !== '/login'">
         Precio:
         <span class="bg-success text-light py-1 px-2 rounded m-3">
             ${{acuPrecio}}
@@ -12,7 +12,7 @@
         <span class="bg-success text-light py-1 px-2 rounded m-3">
             {{promTiempoPreparacion}}
         </span>
-        Healt Score:
+        Health Score:
         <span class="bg-success text-light py-1 px-2 rounded m-3">
             {{promHealtScore}}
         </span>
