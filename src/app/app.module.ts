@@ -13,7 +13,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MenuComponent } from './components/platos/menu/menu.component';
 import { BuscadorComponent } from './components/platos/buscador/buscador.component';
 import { ErrorComponent } from './components/error/error.component';
-import { DetalleComponent } from './components/detalle/detalle.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -29,7 +28,6 @@ import { FooterComponent } from './components/footer/footer.component';
     MenuComponent,
     BuscadorComponent,
     ErrorComponent,
-    DetalleComponent,
     FooterComponent
   ],
   imports: [

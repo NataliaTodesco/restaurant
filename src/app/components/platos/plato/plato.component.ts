@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { MenuService } from 'src/app/services/menu.service';
 import { PlatosService } from 'src/app/services/platos.service';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
@@ -14,7 +13,6 @@ export class PlatoComponent implements OnInit {
   existe: boolean = false;
 
   constructor(
-    private router: Router,
     private platoService: PlatosService,
     private menuService: MenuService
   ) {}
@@ -30,96 +28,85 @@ export class PlatoComponent implements OnInit {
   }
 
   VerPlato() {
-    this.router.navigate(['/plato/' + this.plato.id]);
+    let content =
+      '<h5 class="card-text text-muted">Porciones: ' +
+      '  <span class="text-dark">' +
+      this.IsNull(this.plato.servings) +
+      ' </span>' +
+      '</h5>' +
+      '<h5 class="card-text text-muted">Precio: ' +
+      '   <span class="text-dark"> $' +
+      this.IsNull(this.plato.pricePerServing) +
+      '   </span>' +
+      '</h5>' +
+      '<h5 class="card-text text-muted">Tiempo de Preparación: ' +
+      '    <span class="text-dark">' +
+      this.IsNull(this.plato.readyInMinutes) +
+      ' Min    </span>' +
+      '</h5>' +
+      '<h5 class="card-text text-muted mb-4">Health Score: ' +
+      '    <span class="text-dark">' +
+      this.IsNull(this.plato.healthScore) +
+      '   </span>' +
+      '</h5>';
+
+    Swal.fire({
+      title: '<strong>Detalle del Plato</strong>',
+      html: content,
+      showCloseButton: true,
+      focusConfirm: false,
+      showConfirmButton: false,
+    });
   }
 
   AgregarPlato() {
     let array = this.menuService.menu;
 
     if (
-      this.menuService.menu.length < 4 &&
-      this.plato.vegan === false &&
-      this.menuService.noVegano < 2
+      (this.menuService.menu.length < 4 &&
+        this.plato.vegan === false &&
+        this.menuService.noVegano < 2) ||
+      (this.menuService.menu.length < 4 &&
+        this.plato.vegan &&
+        this.menuService.vegano < 2)
     ) {
       array.push(this.plato);
       this.menuService.setMenu(array);
 
-      let noVegano: number = this.menuService.noVegano;
-      this.menuService.setNoVegano(noVegano++);
-
-      let precio = this.plato.pricePerServing;
-      let tiempo = this.plato.readyInMinutes;
-      let score = this.plato.healthScore;
-
-      this.Informacion(precio, tiempo, score);
-
-      this.Alerta('Plato Agregado!', '', 'success');
-      this.existe = true;
-    } else if (
-      this.menuService.menu.length < 4 &&
-      this.plato.vegan &&
-      this.menuService.vegano < 2
-    ) {
-      array.push(this.plato);
-      this.menuService.setMenu(array);
-
-      let vegano: number = this.menuService.vegano;
-      this.menuService.setVegano(vegano++);
-
-      let precio = this.plato.pricePerServing;
-      let tiempo = this.plato.readyInMinutes;
-      let score = this.plato.healthScore;
-
-      this.Informacion(precio, tiempo, score);
-
-      this.Alerta('Plato Agregado!', '', 'success');
+      Swal.fire('Plato Agregado!', '', 'success');
       this.existe = true;
     } else {
-      this.Alerta(
+      Swal.fire(
         'No se pudo agregar el plato',
         'Solo pueden tener 4 platos en el menú (2 veganos y 2 que no lo sean)',
         'error'
       );
     }
-  }
 
+    this.menuService.Informacion();
+  }
 
   EliminarPlato() {
     let array = this.menuService.menu;
     let index = array.findIndex((plato) => plato === this.plato);
-
+        
     array.splice(index, 1);
     this.menuService.setMenu(array);
-
-    this.Alerta('Plato Eliminado', '', 'success');
+    
+    Swal.fire('Plato Eliminado', '', 'success');
     this.existe = false;
-
-    let precio = this.plato.pricePerServing;
-    let tiempo = this.plato.readyInMinutes;
-    let score = this.plato.healthScore;
-
-    let acu = this.menuService.acuPrecio * 2 - precio;
-    this.menuService.setAcuPrecio(acu);
-
-    let promT = this.menuService.promTiempoPreparacion * 2 - tiempo;
-    this.menuService.setPromTiempoPreparacion(promT);
-
-    let promHS = (this.menuService.promHealtScore + score) / 2;
-    this.menuService.setPromHealtScore(promHS);
+    
+    this.menuService.Informacion();
   }
 
-  Alerta(titulo: string, mensaje: string, tipo: SweetAlertIcon) {
-    Swal.fire(titulo, mensaje, tipo);
+  IsNull(element: string) {
+    if (element === null) return ' - ';
+    else return element;
   }
 
-  Informacion(precio: number, tiempo: number, score: number) {
-    this.menuService.setAcuPrecio(this.menuService.acuPrecio + precio);
-
-    let promT = (this.menuService.promTiempoPreparacion + tiempo) / 2;
-    this.menuService.setPromTiempoPreparacion(promT);
-
-    let promHS = (this.menuService.promHealtScore + score) / 2;
-    this.menuService.setPromHealtScore(promHS);
+  IsTrue(v: boolean) {
+    if (v === true)
+      return '<i class="bi bi-check-circle-fill text-success"></i>';
+    else return '<i class="bi bi-x-circle-fill text-danger"></i>';
   }
-
 }

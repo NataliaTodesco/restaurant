@@ -1,9 +1,27 @@
-<div class="card text-center" style="width: 18rem;">
-    <img *ngIf="plato.image !== undefined" src={{plato.image}} class="card-img-top img-fluid mt-3" alt="...">
+<div class="card" style="width: 18rem;">
+    <img *ngIf="plato.image !== undefined" src={{plato.image}} class="card-img-top img-fluid" alt="...">
     <div class="card-body">
         <h5 class="card-title mb-3">{{plato.title}}</h5>
+        <div class="px-3">
+            <h6 class="card-text text-muted mt-3">Vegetariano 
+                <span class="text-dark" [innerHtml]="IsTrue(plato.vegetarian)">
+                </span>
+            </h6>
+            <h6 class="card-text text-muted">Vegano 
+                <span class="text-dark" [innerHtml]="IsTrue(plato.vegan)">
+                </span>
+            </h6>
+            <h6 class="card-text text-muted">Sin gluten 
+                <span class="text-dark"  [innerHtml]="IsTrue(plato.glutenFree)">
+                </span>
+            </h6>
+            <h6 class="card-text text-muted">Libre de lácteos 
+                <span class="text-dark" [innerHtml]="IsTrue(plato.dairyFree)">
+                </span>
+            </h6>
+        </div>
     </div>
-    <div class="card-body">
+    <div class="card-body text-center">
         <button class="btn btn-outline-primary" (click)="VerPlato()">Ver</button>
         <button class="btn btn-outline-success ml-3" *ngIf="!existe" (click)="AgregarPlato()">Agregar</button>
         <button class="btn btn-outline-danger ml-3" *ngIf="existe" (click)="EliminarPlato()">Eliminar</button>

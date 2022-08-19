@@ -9,21 +9,16 @@ import { MenuService } from 'src/app/services/menu.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  acuPrecio: Number;
-  promTiempoPreparacion: Number;
-  promHealtScore: Number;
 
   constructor(
     private router: Router,
-    private menuService: MenuService,
+    public menuService: MenuService,
     @Inject(DOCUMENT) public document: any
   ) {
-    this.acuPrecio = this.menuService.acuPrecio;
-    this.promTiempoPreparacion = this.menuService.promTiempoPreparacion;
-    this.promHealtScore = this.menuService.promHealtScore;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   LogOut() {
     localStorage.removeItem('user');
