@@ -1,17 +1,63 @@
 <app-navbar></app-navbar>
-<div class="container">
+<div class="container mb-4">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 my-3">
             <img src={{plato.image}} alt="" class="img-fluid rounded">
-            <button class="btn btn-outline-primary" routerLink="/">Volver al Menú</button>
-            <button class="btn btn-outline-success" *ngIf="!existe" (click)="AgregarPlato()">Agregar al
-                Menú</button>
-            <button class="btn btn-outline-danger" *ngIf="existe" (click)="EliminarPlato()">Eliminar del
-                Menú</button>
+            <div class="row mt-4">
+                <div class="col-6">
+                    <button class="btn btn-outline-primary" routerLink="/">Volver al Menú</button>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-outline-success" *ngIf="!existe" (click)="AgregarPlato()">Agregar al
+                        Menú</button>
+                    <button class="btn btn-outline-danger" *ngIf="existe" (click)="EliminarPlato()">Eliminar del
+                        Menú</button>
+                </div>
+            </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 px-5">
             <h1>{{plato.title}}</h1>
-            <h4>a</h4>
+            <h6 class="my-3">{{plato.summary}}</h6>
+            <h4 class="card-text text-muted">Porciones: 
+                <span class="text-dark">
+                    {{IsNull(plato.servings)}}
+                </span>
+            </h4>
+            <h4 class="card-text text-muted">Precio: 
+                <span class="text-dark">
+                    $ {{IsNull(plato.pricePerServing)}}
+                </span>
+            </h4>
+            <h4 class="card-text text-muted">Tiempo de Preparación: 
+                <span class="text-dark">
+                    $ {{IsNull(plato.readyInMinutes)}}
+                </span>
+            </h4>
+            <h4 class="card-text text-muted">Health Score: 
+                <span class="text-dark">
+                    $ {{IsNull(plato.healthScore)}}
+                </span>
+            </h4>
+            <h5 class="card-text text-muted mt-3">Vegetariano: 
+                <span class="text-dark">
+                    {{IsTrue(plato.vegetarian)}} 
+                </span>
+            </h5>
+            <h5 class="card-text text-muted">Vegano: 
+                <span class="text-dark">
+                    {{IsTrue(plato.vegan)}} 
+                </span>
+            </h5>
+            <h5 class="card-text text-muted">Sin gluten: 
+                <span class="text-dark">
+                    {{IsTrue(plato.glutenFree)}}
+                </span>
+            </h5>
+            <h5 class="card-text text-muted">Libre de lácteos: 
+                <span class="text-dark">
+                    {{IsTrue(plato.dairyFree)}} 
+                </span>
+            </h5>
         </div>
     </div>
 </div>

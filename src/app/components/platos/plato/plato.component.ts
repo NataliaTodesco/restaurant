@@ -21,11 +21,11 @@ export class PlatoComponent implements OnInit {
 
   ngOnInit(): void {
     this.platoService.BuscarPlatoPorID(this.plato.id).subscribe(
-      data => {
-        this.plato = data
+      (data) => {
+        this.plato = data;
       },
-      error => console.log(error)
-    )
+      (error) => console.log(error)
+    );
     this.existe = this.menuService.menu.includes(this.plato);
   }
 
@@ -33,14 +33,12 @@ export class PlatoComponent implements OnInit {
     this.router.navigate(['/plato/' + this.plato.id]);
   }
 
-  // falta definir si el plato es vegano y los parametros a pasar
-
   AgregarPlato() {
     let array = this.menuService.menu;
 
     if (
       this.menuService.menu.length < 4 &&
-      this.plato &&
+      this.plato.vegan === false &&
       this.menuService.noVegano < 2
     ) {
       array.push(this.plato);
@@ -49,18 +47,17 @@ export class PlatoComponent implements OnInit {
       let noVegano: number = this.menuService.noVegano;
       this.menuService.setNoVegano(noVegano++);
 
-      let precio = 0;
-      let tiempo = 0;
-      let score = 0;
+      let precio = this.plato.pricePerServing;
+      let tiempo = this.plato.readyInMinutes;
+      let score = this.plato.healthScore;
 
-      this.Informacion(precio, tiempo, score)
-      
+      this.Informacion(precio, tiempo, score);
+
       this.Alerta('Plato Agregado!', '', 'success');
       this.existe = true;
-
     } else if (
       this.menuService.menu.length < 4 &&
-      this.plato &&
+      this.plato.vegan &&
       this.menuService.vegano < 2
     ) {
       array.push(this.plato);
@@ -69,15 +66,14 @@ export class PlatoComponent implements OnInit {
       let vegano: number = this.menuService.vegano;
       this.menuService.setVegano(vegano++);
 
-      let precio = 0;
-      let tiempo = 0;
-      let score = 0;
+      let precio = this.plato.pricePerServing;
+      let tiempo = this.plato.readyInMinutes;
+      let score = this.plato.healthScore;
 
-      this.Informacion(precio, tiempo, score)
+      this.Informacion(precio, tiempo, score);
 
       this.Alerta('Plato Agregado!', '', 'success');
       this.existe = true;
-
     } else {
       this.Alerta(
         'No se pudo agregar el plato',
@@ -87,7 +83,6 @@ export class PlatoComponent implements OnInit {
     }
   }
 
-  // Definir los paremetros 
 
   EliminarPlato() {
     let array = this.menuService.menu;
@@ -99,27 +94,32 @@ export class PlatoComponent implements OnInit {
     this.Alerta('Plato Eliminado', '', 'success');
     this.existe = false;
 
-    // let acu =(this.menuService.acuPrecio*2)-precio
-    // this.menuService.setAcuPrecio(acu);
+    let precio = this.plato.pricePerServing;
+    let tiempo = this.plato.readyInMinutes;
+    let score = this.plato.healthScore;
 
-    // let promT = (this.menuService.promTiempoPreparacion*2)-tiempo;
-    // this.menuService.setPromTiempoPreparacion(promT)
+    let acu = this.menuService.acuPrecio * 2 - precio;
+    this.menuService.setAcuPrecio(acu);
 
-    // let promHS = (this.menuService.promHealtScore+score) / 2;
-    // this.menuService.setPromHealtScore(promHS)
+    let promT = this.menuService.promTiempoPreparacion * 2 - tiempo;
+    this.menuService.setPromTiempoPreparacion(promT);
+
+    let promHS = (this.menuService.promHealtScore + score) / 2;
+    this.menuService.setPromHealtScore(promHS);
   }
 
   Alerta(titulo: string, mensaje: string, tipo: SweetAlertIcon) {
     Swal.fire(titulo, mensaje, tipo);
   }
 
-  Informacion(precio: number, tiempo: number, score: number){
-    this.menuService.setAcuPrecio(this.menuService.acuPrecio+precio);
+  Informacion(precio: number, tiempo: number, score: number) {
+    this.menuService.setAcuPrecio(this.menuService.acuPrecio + precio);
 
-    let promT = (this.menuService.promTiempoPreparacion+tiempo) / 2;
-    this.menuService.setPromTiempoPreparacion(promT)
+    let promT = (this.menuService.promTiempoPreparacion + tiempo) / 2;
+    this.menuService.setPromTiempoPreparacion(promT);
 
-    let promHS = (this.menuService.promHealtScore+score) / 2;
-    this.menuService.setPromHealtScore(promHS)
+    let promHS = (this.menuService.promHealtScore + score) / 2;
+    this.menuService.setPromHealtScore(promHS);
   }
+
 }

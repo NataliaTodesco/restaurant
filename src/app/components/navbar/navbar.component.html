@@ -1,22 +1,33 @@
-<div class="p-4 d-flex justify-content-between">
-    <div [routerLink]="['/']" style="cursor: pointer;">
-        <img src="https://spoonacular.com/application/frontend/images/logo-simple-framed-green-gradient.svg" alt="">
-        <span class="titulo">A la Carta</span>
+<div class="p-4">
+    <div class="menu">
+        <div [routerLink]="['/']" style="cursor: pointer;">
+            <img src="https://spoonacular.com/application/frontend/images/logo-simple-framed-green-gradient.svg" alt="">
+            <span class="titulo">A la Carta</span>
+        </div>
+        <button *ngIf="document.location.pathname !== '/login'" class="btn btn-outline-danger px-3" (click)="LogOut()"
+            type="button">
+            <i class="bi bi-box-arrow-left mr-2"></i>
+            Logout
+        </button>
     </div>
-    <h6 class="mt-2" *ngIf="document.location.pathname !== '/login'">
-        Precio:
-        <span class="bg-success text-light py-1 px-2 rounded m-3">
-            ${{acuPrecio}}
-        </span>
-        Tiempo de preparación:
-        <span class="bg-success text-light py-1 px-2 rounded m-3">
-            {{promTiempoPreparacion}}
-        </span>
-        Health Score:
-        <span class="bg-success text-light py-1 px-2 rounded m-3">
-            {{promHealtScore}}
-        </span>
-    </h6>
-    <button *ngIf="document.location.pathname !== '/login'" class="btn btn-lg text-danger px-4" (click)="LogOut()"
-        type="button"><i class="bi bi-box-arrow-left mr-2"></i> Logout</button>
+    <div class="acumuladores" *ngIf="document.location.pathname !== '/login'">
+        <h6>
+            Precio
+            <span class="bg-success text-light py-1 px-2 rounded m-3">
+                ${{acuPrecio}}
+            </span>
+        </h6>
+        <h6>
+            Tiempo de prep.
+            <span class="bg-success text-light py-1 px-2 rounded m-3">
+                {{promTiempoPreparacion}} Min
+            </span>
+        </h6>
+        <h6>
+            Health Score
+            <span class="bg-success text-light py-1 px-2 rounded m-3">
+                {{promHealtScore}}
+            </span>
+        </h6>
+    </div>
 </div>

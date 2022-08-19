@@ -7,13 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class PlatosService {
   key: string = '815a9672d3b14724b97d967e9a3568c9';
-  search_by_id_url: string = 'https://api.spoonacular.com/food/menuItems';
-  search_url: string = 'https://api.spoonacular.com/food/menuItems/search?query=';
+  search_by_id_url: string = 'https://api.spoonacular.com/recipes/';
+  search_url: string = 'https://api.spoonacular.com/recipes/complexSearch?query=';
 
   constructor(private http: HttpClient) { }
 
   BuscarPlatoPorID(id:string): Observable<any> {
-    return this.http.get(`${this.search_by_id_url}/${id}?apiKey=${this.key}`);
+    return this.http.get(`${this.search_by_id_url}${id}/information/?apiKey=${this.key}`);
   }
 
   Buscar(query:string): Observable<any> {

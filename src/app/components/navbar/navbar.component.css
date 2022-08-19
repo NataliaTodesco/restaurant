@@ -10,3 +10,26 @@ img{
     margin-left: 5px;
     font-size: large;
 }
+
+.menu{
+    display: flex;
+    justify-content: space-between;
+}
+
+.acumuladores{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+@media (max-width: 800px) {
+    .acumuladores h6{
+        margin-top: 8%;
+    }
+}
+
+@media (max-width: 500px) {
+    .acumuladores h6 span{
+        line-height: 50px;
+    }
+}

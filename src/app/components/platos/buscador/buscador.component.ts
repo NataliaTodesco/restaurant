@@ -29,8 +29,8 @@ export class BuscadorComponent implements OnInit {
       )
       .subscribe((data) => {
         this.platosService.Buscar(data).subscribe(
-          ({ menuItems }) => {
-            this.resultados = menuItems;
+          ({ results }) => {
+            this.resultados = results;
           },
           (error) => console.log(error.message)
         );
