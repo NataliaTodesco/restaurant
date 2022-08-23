@@ -25,7 +25,7 @@ export class BuscadorComponent implements OnInit {
       .pipe(
         map((e: any) => e.currentTarget.value),
         filter((plato) => plato.length > 2),
-        debounceTime(100)
+        debounceTime(1000)
       )
       .subscribe((data) => {
         this.platosService.Buscar(data).subscribe(
